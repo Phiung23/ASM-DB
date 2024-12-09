@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Surgeries</title>
+    <link rel="stylesheet" href="/css/getNurse.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        viewNurse();
+      });
+      async function viewNurse() {
+        try {
+          // Retrieve the JWT from localStorage
+          const token = localStorage.getItem("jwt");
+          if (!token) {
+            alert("You are not logged in. Please log in first.");
+            return;
+          }
+
+          // Send a GET request to the endpoint with the JWT
+          const response = await fetch(
+            "https://localhost:7205/api/Admin/viewNurse",
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`, // Include the JWT token
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (response.ok) {
+            const resultDiv = document.getElementById("result");
+
+            const nurses = await response.json();
+
+            // Check if no nurses were found
+            if (nurses.length === 0) {
+              resultDiv.innerHTML = `<p class="no-data">No nurses found.</p>`;
+              return;
+            }
+
+            // Build the HTML table dynamically
+            let tableHTML = `
+  <h3>All Nurses:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>Phone Number</th>
+        <th>Salary</th>
+        <th>Experience (Years)</th>
+        <th>Degree</th>
+        <th>Department ID</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
+
+            // Loop through each nurse and add rows to the table
+            nurses.forEach((nurse) => {
+              tableHTML += `
+    <tr>
+      <td>${nurse.employeeId}</td>
+      <td>${nurse.name}</td>
+      <td>${new Date(nurse.dob).toLocaleDateString()}</td>
+      <td>${nurse.gender}</td>
+      <td>${nurse.phoneNumber}</td>
+      <td>${nurse.salary.toFixed(2)}</td>
+      <td>${nurse.experience}</td>
+      <td>${nurse.degree || "N/A"}</td>
+      <td>${nurse.departmentId || "N/A"}</td>
+    </tr>
+  `;
+            });
+
+            tableHTML += `
+    </tbody>
+  </table>
+`;
+
+            // Inject the built table into the DOM
+            resultDiv.innerHTML = tableHTML;
+          } else {
+            const error = await response.json();
+            alert(`Error: ${error.error || "Unknown error"}`);
+          }
+        } catch (err) {
+          console.error("Error fetching surgeries:", err);
+          alert("Failed to fetch surgeries.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Admin Dashboard</h1>
+    <button class="th" onclick="window.location.href='addNurse.html'">
+      Add Nurse
+    </button>
+    <button
+      onclick="window.location.href = '/pages/admin/updateNurse.html'"
+      class="btn">
+      Update Nurse
+    </button>
+    <button
+      id="deleteNurseButton"
+      class="delete-button"
+      onclick="
+      window.location.href='/pages/admin/deleteNurse.html'">
+      Delete Nurse
+    </button>
+
+    <div id="result" style="margin-top: 20px"></div>
+  </body>
+</html>

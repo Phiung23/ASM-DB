@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nurse Dashboard - HMS</title>
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-user-nurse"></i>
+          <span>Nurse Portal</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="patient-list">
+              <i class="fas fa-procedures"></i>
+              <span>Patient List</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="recent-tests">
+              <i class="fas fa-heartbeat"></i>
+              <span>Recent tests</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="vital-signs">
+              <i class="fas fa-heartbeat"></i>
+              <span>vital signs</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="medications">
+              <i class="fas fa-pills"></i>
+              <span>Medications</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="tasks">
+              <i class="fas fa-tasks"></i>
+              <span>Tasks</span>
+              <span class="badge badge-warning">5</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="reports">
+              <i class="fas fa-file-medical"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="handover">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Shift Handover</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-bar">
+          <button id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="user-info">
+            <span>Nurse Sarah Johnson</span>
+            <img src="../../assets/images/nurse-avatar.png" alt="Nurse" />
+          </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <button class="btn btn-primary" onclick="addPatientVitals()">
+              <i class="fas fa-plus"></i> Add Vitals
+            </button>
+            <button class="btn btn-success" onclick="medicationSchedule()">
+              <i class="fas fa-clock"></i> Medication Schedule
+            </button>
+            <button class="btn btn-warning" onclick="emergencyAlert()">
+              <i class="fas fa-exclamation-triangle"></i> Emergency Alert
+            </button>
+          </div>
+
+          <!-- Stats Overview -->
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #4caf50">
+                <i class="fas fa-bed"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Active Patients</h3>
+                <p>24</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #2196f3">
+                <i class="fas fa-pills"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Pending Medications</h3>
+                <p>12</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #ff9800">
+                <i class="fas fa-tasks"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Tasks Due</h3>
+                <p>5</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #e91e63">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Completed Tasks</h3>
+                <p>18</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patient Overview -->
+          <div class="section-card">
+            <h3><i class="fas fa-procedures"></i> Current Patients</h3>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Room</th>
+                    <th>Patient Name</th>
+                    <th>Status</th>
+                    <th>Last Vitals</th>
+                    <th>Next Medication</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="currentPatientsList">
+                  <!-- Patient rows will be loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Task Timeline -->
+          <div class="section-card">
+            <h3><i class="fas fa-clock"></i> Today's Schedule</h3>
+            <div class="timeline" id="taskTimeline">
+              <!-- Timeline items will be loaded dynamically -->
+            </div>
+          </div>
+
+          <!-- Critical Alerts -->
+          <div class="section-card">
+            <h3><i class="fas fa-exclamation-circle"></i> Critical Alerts</h3>
+            <div class="alerts-container" id="criticalAlerts">
+              <!-- Alerts will be loaded dynamically -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal Templates -->
+    <template id="vitalsModalTemplate">
+      <div class="modal" id="vitalsModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Record Vital Signs</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <form id="vitalsForm">
+              <div class="form-group">
+                <label>Patient</label>
+                <select class="form-control" required>
+                  <option value="">Select Patient</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Blood Pressure</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="120/80"
+                  required />
+              </div>
+              <div class="form-group">
+                <label>Heart Rate</label>
+                <input type="number" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label>Temperature</label>
+                <input type="number" class="form-control" step="0.1" required />
+              </div>
+              <div class="form-group">
+                <label>Oxygen Saturation</label>
+                <input type="number" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label>Notes</label>
+                <textarea class="form-control"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Vitals</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script src="../../js/roles/nurse.js"></script>
+  </body>
+</html>

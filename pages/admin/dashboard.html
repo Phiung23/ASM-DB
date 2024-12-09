@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - HMS</title>
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-hospital-alt"></i>
+          <span>HMS Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="get-patient">
+              <i class="fas fa-users"></i>
+              <span>Patients</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="departments">
+              <i class="fas fa-hospital"></i>
+              <span>Departments</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="get-nurse">
+              <i class="fas fa-cog"></i>
+              <span>Nurses</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="get-doctor">
+              <i class="fas fa-cog"></i>
+              <span>Doctors</span>
+            </a>
+          </li>
+          <li>
+            <a href="/testLogin.html" id="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-bar">
+          <button id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="user-info">
+            <span>Welcome, Admin</span>
+            <img src="../../assets/images/admin-avatar.png" alt="Admin" />
+          </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <!-- Stats Cards -->
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #4caf50">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Total Doctors</h3>
+                <p>45</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #2196f3">
+                <i class="fas fa-procedures"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Patients</h3>
+                <p>152</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #ff9800">
+                <i class="fas fa-user-nurse"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Nurses</h3>
+                <p>30</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #e91e63">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Lab Tests</h3>
+                <p>85</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Section -->
+          <div class="charts-section">
+            <div class="chart-container">
+              <h3>Patient Admissions</h3>
+              <canvas id="admissionsChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3>Department Performance</h3>
+              <canvas id="departmentChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+              <!-- Activity items will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/roles/admin.js"></script>
+  </body>
+</html>

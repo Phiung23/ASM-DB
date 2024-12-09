@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Surgeries</title>
+    <link rel="stylesheet" href="/css/showTestResults.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        viewTest();
+      });
+      async function viewTest() {
+        try {
+          // Retrieve the JWT from localStorage
+          const token = localStorage.getItem("jwt");
+          if (!token) {
+            alert("You are not logged in. Please log in first.");
+            return;
+          }
+
+          // Send a GET request to the endpoint with the JWT
+          const response = await fetch(
+            "https://localhost:7205/api/Patient/tests",
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`, // Include the JWT token
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (response.ok) {
+            const tests = await response.json();
+            console.log(response);
+            // Build a user-friendly table
+            const resultDiv = document.getElementById("result");
+            if (tests.length === 0) {
+              resultDiv.innerHTML = "<p>No tests found.</p>";
+              return;
+            }
+
+            let tableHTML = `
+        <h3>Tests:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Test ID</th>
+              <th>Test Name</th>
+              <th>Result</th>
+              <th>Description</th>
+              <th>Date taken</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+            tests.forEach((test) => {
+              tableHTML += `
+          <tr>
+            <td>${test.testId}</td>
+            <td>${test.testName}</td>
+            <td>${test.testResult || "None"}</td>
+            <td>${test.testDescription}</td>
+            <td>${new Date(test.testDate).toLocaleDateString()}</td>
+          </tr>
+        `;
+            });
+
+            tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+            resultDiv.innerHTML = tableHTML;
+          } else {
+            const error = await response.json();
+            alert(`Error: ${error.error || "Unknown error"}`);
+          }
+        } catch (err) {
+          console.error("Error fetching tests:", err);
+          alert("Failed to fetch tests.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Patient Dashboard</h1>
+    <div id="result" style="margin-top: 20px"></div>
+  </body>
+</html>

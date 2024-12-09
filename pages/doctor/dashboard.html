@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Dashboard - HMS</title>
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-user-md"></i>
+          <span>Doctor Portal</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="show-Patient-List">
+              <i class="fas fa-users"></i>
+              <span>My Patients</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="show-surgeries">
+              <i class="fas fa-calendar-check"></i>
+              <span>Recent Surgeries</span>
+            </a>
+          </li>
+          <li>
+            <a href="prescriptions.html">
+              <i class="fas fa-prescription"></i>
+              <span>Prescriptions</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="lab-requests">
+              <i class="fas fa-flask"></i>
+              <span>Lab Requests</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-bar">
+          <button id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="user-info">
+            <span>Dr. John Smith</span>
+            <img src="../../assets/images/doctor-avatar.png" alt="Doctor" />
+          </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <!-- Today's Schedule -->
+          <div class="schedule-section">
+            <h2>Today's Schedule</h2>
+            <div class="appointment-cards">
+              <!-- Appointment cards will be dynamically added here -->
+            </div>
+          </div>
+
+          <!-- Patient Stats -->
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #4caf50">
+                <i class="fas fa-user-check"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Today's Patients</h3>
+                <p>8</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #2196f3">
+                <i class="fas fa-procedures"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Total Patients</h3>
+                <p>145</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #ff9800">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Pending Labs</h3>
+                <p>5</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon" style="background-color: #e91e63">
+                <i class="fas fa-prescription"></i>
+              </div>
+              <div class="stat-card-info">
+                <h3>Prescriptions</h3>
+                <p>12</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patient Overview -->
+          <div class="charts-section">
+            <div class="chart-container">
+              <h3>Patient Demographics</h3>
+              <canvas id="demographicsChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3>Treatment Success Rate</h3>
+              <canvas id="successRateChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Patients -->
+          <div class="recent-patients">
+            <h3>Recent Patients</h3>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Last Visit</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="recentPatientsTable">
+                  <!-- Patient rows will be dynamically added here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/roles/doctor.js"></script>
+  </body>
+</html>

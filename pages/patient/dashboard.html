@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Dashboard - HMS</title>
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-user"></i>
+          <span>Patient Portal</span>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="medical-history">
+              <i class="fas fa-file-medical"></i>
+              <span>Medical History</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="surgery-results">
+              <i class="fas fa-flask"></i>
+              <span>Surgery Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="test-results">
+              <i class="fas fa-flask"></i>
+              <span>Test Results</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-bar">
+          <button id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="user-info">
+            <span>Welcome, John Doe</span>
+            <img src="../../assets/images/patient-avatar.png" alt="Patient" />
+          </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <button class="btn btn-primary" onclick="bookAppointment()">
+              <i class="fas fa-plus"></i> Book Appointment
+            </button>
+            <button class="btn btn-success" onclick="requestPrescription()">
+              <i class="fas fa-prescription"></i> Request Prescription Refill
+            </button>
+            <button class="btn btn-warning" onclick="viewMessages()">
+              <i class="fas fa-envelope"></i> View Messages
+            </button>
+          </div>
+
+          <!-- Upcoming Appointments -->
+          <div class="section-card">
+            <h3><i class="fas fa-calendar-check"></i> Upcoming Appointments</h3>
+            <div class="appointments-list" id="upcomingAppointments">
+              <!-- Appointments will be loaded dynamically -->
+            </div>
+          </div>
+
+          <!-- Health Metrics -->
+          <div class="charts-section">
+            <div class="chart-container">
+              <h3>Vital Signs History</h3>
+              <canvas id="vitalsChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3>Recent Lab Results</h3>
+              <canvas id="labResultsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="section-card">
+            <h3><i class="fas fa-history"></i> Recent Activity</h3>
+            <div class="activity-timeline" id="recentActivity">
+              <!-- Activity items will be loaded dynamically -->
+            </div>
+          </div>
+
+          <!-- Medications -->
+          <div class="section-card">
+            <h3>
+              <i class="fas fa-prescription-bottle-alt"></i> Current Medications
+            </h3>
+            <div class="medications-list" id="currentMedications">
+              <!-- Medications will be loaded dynamically -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Templates for Modals -->
+    <template id="appointmentModalTemplate">
+      <div class="modal" id="appointmentModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Book New Appointment</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <form id="appointmentForm">
+              <div class="form-group">
+                <label>Department</label>
+                <select class="form-control" required>
+                  <option value="">Select Department</option>
+                  <option value="cardiology">Cardiology</option>
+                  <option value="neurology">Neurology</option>
+                  <option value="orthopedics">Orthopedics</option>
+                  <option value="pediatrics">Pediatrics</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Doctor</label>
+                <select class="form-control" required>
+                  <option value="">Select Doctor</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label>Preferred Time</label>
+                <select class="form-control" required>
+                  <option value="">Select Time</option>
+                  <option>09:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>02:00 PM</option>
+                  <option>03:00 PM</option>
+                  <option>04:00 PM</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Reason for Visit</label>
+                <textarea class="form-control" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Book Appointment
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script src="../../js/roles/patient.js"></script>
+  </body>
+</html>
