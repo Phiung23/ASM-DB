@@ -1,0 +1,288 @@
+[
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddDoctor",
+    "RelativePath": "api/Admin/addDoctor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorModel",
+        "Type": "hospitalapp.Models.AddModel.AddDoctorModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddNurse",
+    "RelativePath": "api/Admin/addNurse",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nurseModel",
+        "Type": "hospitalapp.Models.AddModel.AddNurseModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddPatient",
+    "RelativePath": "api/Admin/addPatient",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "patientModel",
+        "Type": "hospitalapp.Models.AddModel.AddPatientModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "DeleteDoctor",
+    "RelativePath": "api/Admin/deleteDoctor/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "DeleteNurse",
+    "RelativePath": "api/Admin/deleteNurse/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "DeletePatient",
+    "RelativePath": "api/Admin/deletePatient/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "UpdateDoctor",
+    "RelativePath": "api/Admin/updateDoctor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorModel",
+        "Type": "hospitalapp.Models.UpdateModel.UpdateDoctorModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "UpdateNurse",
+    "RelativePath": "api/Admin/updateNurse",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nurseModel",
+        "Type": "hospitalapp.Models.UpdateModel.UpdateNurseModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "UpdatePatient",
+    "RelativePath": "api/Admin/updatePatient",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "patientModel",
+        "Type": "hospitalapp.Models.UpdatePatientModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "ViewDoctors",
+    "RelativePath": "api/Admin/viewDoctor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "ViewNurses",
+    "RelativePath": "api/Admin/viewNurse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "ViewPatients",
+    "RelativePath": "api/Admin/viewPatient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "hospitalapp.Models.AuthModel.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "Logout",
+    "RelativePath": "api/Auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "Register",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "hospitalapp.Models.AuthModel.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoctorController",
+    "Method": "GetPatients",
+    "RelativePath": "api/Doctor/Patients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DoctorController",
+    "Method": "GetSurgeriesByDoctor",
+    "RelativePath": "api/Doctor/recentSurgeries",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NurseController",
+    "Method": "GetPatients",
+    "RelativePath": "api/Nurse/Patients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NurseController",
+    "Method": "GetTestsByNurse",
+    "RelativePath": "api/Nurse/recentTests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PatientController",
+    "Method": "GetMedicalHistory",
+    "RelativePath": "api/Patient/medicalHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PatientController",
+    "Method": "GetSurgeries",
+    "RelativePath": "api/Patient/surgeries",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PatientController",
+    "Method": "GetTests",
+    "RelativePath": "api/Patient/tests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

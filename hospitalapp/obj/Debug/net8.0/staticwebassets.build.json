@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LctU2ZPCHYJM78pLw5nkUYd3z+9WCpDaBCGr2ErEXm0=",
+  "Source": "hospitalapp",
+  "BasePath": "_content/hospitalapp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
